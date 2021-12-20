@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="clinicaldata")
+@Table(name = "clinicaldata")
 public class ClinicalData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,6 @@ public class ClinicalData {
     @JoinColumn(name = "patient_id", nullable = false)
     @JsonIgnore
     private Patient patient;
-
-
 
     public Integer getId() {
         return id;

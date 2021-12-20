@@ -5,9 +5,9 @@ import com.richieoscar.clinicapi.entities.ClinicalData;
 import com.richieoscar.clinicapi.entities.Patient;
 import com.richieoscar.clinicapi.exceptions.PatientNotFoundException;
 import com.richieoscar.clinicapi.repository.ClinicalDataRepository;
-
 import com.richieoscar.clinicapi.repository.PatientRepository;
 import com.richieoscar.clinicapi.util.BMICalculator;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin
+@ApiResponse
 public class ClinicalDataController {
 
     private ClinicalDataRepository clinicalDataRepository;
@@ -43,8 +44,8 @@ public class ClinicalDataController {
     }
 
     @GetMapping("/clinicals/{patientId}/{componentName}")
-    public List<ClinicalData> getClinicalData(@PathVariable("patientId") int patientId, @PathVariable("componentName") String componentName){
-        if(componentName.equals("bmi")){
+    public List<ClinicalData> getClinicalData(@PathVariable("patientId") int patientId, @PathVariable("componentName") String componentName) {
+        if (componentName.equals("bmi")) {
             componentName = "hw";
         }
         List<ClinicalData> clinicalData = clinicalDataRepository.findByPatientIdAndComponentNameOrderByMeasuredDateTime(patientId, componentName);

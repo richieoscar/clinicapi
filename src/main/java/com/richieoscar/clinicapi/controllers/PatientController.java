@@ -58,12 +58,10 @@ public class PatientController {
                 } else {
                     filters.put(clinicEntry.getComponentName(), null);
                 }
-                BMICalculator.calculateBmi(clinicalData,clinicEntry);
+                BMICalculator.calculateBmi(clinicalData, clinicEntry);
             }
             filters.clear();
             return patient;
         } else throw new PatientNotFoundException("Patient Not found");
     }
-
-
 }
